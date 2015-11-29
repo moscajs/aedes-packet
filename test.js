@@ -1,7 +1,7 @@
 'use strict'
 
 var test = require('tape')
-var Packet = require('.')
+var Packet = require('./')
 
 test('Packet defaults', function (t) {
   var instance = new Packet({})
