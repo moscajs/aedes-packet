@@ -1,0 +1,32 @@
+{
+  "name": "aedes-packet",
+  "version": "0.0.1",
+  "description": "Basic data structure for packets in Aedes ",
+  "main": "packet.js",
+  "dependencies": {},
+  "devDependencies": {
+    "faucet": "0.0.1",
+    "pre-commit": "^1.1.2",
+    "standard": "^5.4.1",
+    "tape": "^4.2.2"
+  },
+  "scripts": {
+    "test": "standard && tape test.js | faucet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcollina/aedes-packet.git"
+  },
+  "keywords": [
+    "mqtt",
+    "packet",
+    "broker",
+    "aedes"
+  ],
+  "author": "Matteo Collina <hello@matteocollina.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mcollina/aedes-packet/issues"
+  },
+  "homepage": "https://github.com/mcollina/aedes-packet#readme"
+}
