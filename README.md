@@ -1,5 +1,4 @@
-# aedes-packet&nbsp;&nbsp;[![Build Status](https://travis-ci.org/mcollina/aedes-packet.png)](https://travis-ci.org/mcollina/aedes-packet)
-
+# aedes-packet&nbsp;&nbsp;[![Build Status](https://travis-ci.org/mcollina/aedes-packet.svg)](https://travis-ci.org/mcollina/aedes-packet)
 
 Basic data structure for packets in [Aedes](http://npm.im/aedes), packaged up for perf and reusability between modules.
 
