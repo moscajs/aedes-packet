@@ -11,7 +11,7 @@ function Packet (original, broker) {
   // [MQTT-2.3.1-5]
   if (this.qos > 0 || this.cmd !== 'publish') {
     //  [MQTT-2.3.1-1]
-    this.messageId = original.messageId || 1
+    this.messageId = 1
   }
 }
 

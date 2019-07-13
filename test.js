@@ -62,7 +62,7 @@ test('Packet copies over most data', function (t) {
     payload: 'world',
     qos: 2,
     retain: true,
-    messageId: 24
+    messageId: 1 // this is different
   }
 
   t.deepEqual(instance, expected)
@@ -91,7 +91,7 @@ test('Packet fills in broker data', function (t) {
     payload: 'world',
     qos: 2,
     retain: true,
-    messageId: 24
+    messageId: 1 // this is different
   }
 
   t.deepEqual(instance, expected)
