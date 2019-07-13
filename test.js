@@ -9,7 +9,7 @@ test('Packet defaults', function (t) {
   t.equal(instance.brokerId, undefined)
   t.equal(instance.brokerCounter, 0)
   t.equal(instance.topic, undefined)
-  t.deepEqual(instance.payload, new Buffer(0))
+  t.deepEqual(instance.payload, Buffer.alloc(0))
   t.equal(instance.qos, 0)
   t.equal(instance.retain, false)
   t.equal(instance.messageId, 0)
