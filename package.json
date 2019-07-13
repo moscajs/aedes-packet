@@ -6,12 +6,14 @@
   "dependencies": {},
   "devDependencies": {
     "faucet": "0.0.1",
-    "pre-commit": "^1.1.2",
-    "standard": "^5.4.1",
-    "tape": "^4.2.2"
+    "nyc": "^14.1.1",
+    "pre-commit": "^1.2.2",
+    "standard": "^13.0.2",
+    "tape": "^4.11.0"
   },
   "scripts": {
-    "test": "standard && tape test.js | faucet"
+    "test": "standard && tape test.js | faucet",
+    "coverage": "nyc --reporter=lcov tape test.js"
   },
   "repository": {
     "type": "git",
