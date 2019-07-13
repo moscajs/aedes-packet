@@ -8,7 +8,12 @@ function Packet (original, broker) {
   this.payload = original.payload || Buffer.alloc(0)
   this.qos = original.qos || 0
   this.retain = original.retain || false
-  this.messageId = 0
+  // [MQTT-2.3.1-5]
+  // qos = 0 and publish
+  if (this.qos > 0 || this.cmd !== 'publish') {
+    //  [MQTT-2.3.1-1]
+    this.messageId = original.messageId || 1
+  }
 }
 
 module.exports = Packet
