@@ -3,16 +3,42 @@
 var test = require('tape')
 var Packet = require('./')
 
-test('Packet defaults', function (t) {
+test('Packet defaults - PUBLISH, QoS 0', function (t) {
   var instance = new Packet({})
   t.equal(instance.cmd, 'publish')
   t.equal(instance.brokerId, undefined)
   t.equal(instance.brokerCounter, 0)
   t.equal(instance.topic, undefined)
-  t.deepEqual(instance.payload, new Buffer(0))
+  t.deepEqual(instance.payload, Buffer.alloc(0))
   t.equal(instance.qos, 0)
   t.equal(instance.retain, false)
-  t.equal(instance.messageId, 0)
+  t.equal(instance.messageId, undefined)
+  t.end()
+})
+
+test('Packet defaults - PUBREL, QoS 0', function (t) {
+  var instance = new Packet({ cmd: 'pubrel' })
+  t.equal(instance.cmd, 'pubrel')
+  t.equal(instance.brokerId, undefined)
+  t.equal(instance.brokerCounter, 0)
+  t.equal(instance.topic, undefined)
+  t.deepEqual(instance.payload, Buffer.alloc(0))
+  t.equal(instance.qos, 0)
+  t.equal(instance.retain, false)
+  t.equal(instance.messageId, 1)
+  t.end()
+})
+
+test('Packet defaults - PUBLISH, QoS 1', function (t) {
+  var instance = new Packet({ qos: 1 })
+  t.equal(instance.cmd, 'publish')
+  t.equal(instance.brokerId, undefined)
+  t.equal(instance.brokerCounter, 0)
+  t.equal(instance.topic, undefined)
+  t.deepEqual(instance.payload, Buffer.alloc(0))
+  t.equal(instance.qos, 1)
+  t.equal(instance.retain, false)
+  t.equal(instance.messageId, 1)
   t.end()
 })
 
@@ -36,7 +62,7 @@ test('Packet copies over most data', function (t) {
     payload: 'world',
     qos: 2,
     retain: true,
-    messageId: 0 // this is different
+    messageId: 1 // this is different
   }
 
   t.deepEqual(instance, expected)
@@ -65,7 +91,7 @@ test('Packet fills in broker data', function (t) {
     payload: 'world',
     qos: 2,
     retain: true,
-    messageId: 0 // this is different
+    messageId: 1 // this is different
   }
 
   t.deepEqual(instance, expected)
