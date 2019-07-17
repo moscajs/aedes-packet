@@ -4,11 +4,13 @@
   "description": "Basic data structure for packets in Aedes ",
   "main": "packet.js",
   "scripts": {
-    "test": "standard && tape test.js | faucet",
+    "lint": "standard --verbose | snazzy",
+    "test": "tape test.js | faucet",
     "coverage": "nyc --reporter=lcov tape test.js",
     "license-checker": "license-checker --production --onlyAllow='MIT;ISC;BSD-3-Clause;BSD-2-Clause'"
   },
   "pre-commit": [
+    "lint",
     "test"
   ],
   "repository": {
@@ -39,6 +41,7 @@
     "license-checker": "^25.0.1",
     "nyc": "^14.1.1",
     "pre-commit": "^1.2.2",
+    "snazzy": "^8.0.0",
     "standard": "^13.0.2",
     "tape": "^4.11.0"
   }
