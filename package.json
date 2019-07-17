@@ -3,17 +3,10 @@
   "version": "2.0.0",
   "description": "Basic data structure for packets in Aedes ",
   "main": "packet.js",
-  "dependencies": {},
-  "devDependencies": {
-    "faucet": "0.0.1",
-    "nyc": "^14.1.1",
-    "pre-commit": "^1.2.2",
-    "standard": "^13.0.2",
-    "tape": "^4.11.0"
-  },
   "scripts": {
     "test": "standard && tape test.js | faucet",
-    "coverage": "nyc --reporter=lcov tape test.js"
+    "coverage": "nyc --reporter=lcov tape test.js",
+    "license-checker": "license-checker --production --onlyAllow='MIT;ISC;BSD-3-Clause;BSD-2-Clause'"
   },
   "pre-commit": [
     "test"
@@ -39,5 +32,14 @@
   "bugs": {
     "url": "https://github.com/mcollina/aedes-packet/issues"
   },
-  "homepage": "https://github.com/mcollina/aedes-packet#readme"
+  "homepage": "https://github.com/mcollina/aedes-packet#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "faucet": "0.0.1",
+    "license-checker": "^25.0.1",
+    "nyc": "^14.1.1",
+    "pre-commit": "^1.2.2",
+    "standard": "^13.0.2",
+    "tape": "^4.11.0"
+  }
 }
