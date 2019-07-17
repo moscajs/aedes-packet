@@ -7,6 +7,10 @@ documentation and usage.
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
+## Collaborators
+
+* [__Gnought__](https://github.com/gnought)
+
 ## License
 
 MIT
