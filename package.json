@@ -15,6 +15,9 @@
     "test": "standard && tape test.js | faucet",
     "coverage": "nyc --reporter=lcov tape test.js"
   },
+  "pre-commit": [
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mcollina/aedes-packet.git"
