@@ -12,7 +12,7 @@ test('Packet defaults - PUBLISH, QoS 0', function (t) {
   t.deepEqual(instance.payload, Buffer.alloc(0))
   t.equal(instance.qos, 0)
   t.equal(instance.retain, false)
-  t.equal(instance.messageId, undefined)
+  t.notOk(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
   t.end()
 })
 
@@ -25,7 +25,8 @@ test('Packet defaults - PUBREL, QoS 0', function (t) {
   t.deepEqual(instance.payload, Buffer.alloc(0))
   t.equal(instance.qos, 0)
   t.equal(instance.retain, false)
-  t.equal(instance.messageId, 1)
+  t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
+  t.equal(instance.messageId, undefined)
   t.end()
 })
 
@@ -38,7 +39,8 @@ test('Packet defaults - PUBLISH, QoS 1', function (t) {
   t.deepEqual(instance.payload, Buffer.alloc(0))
   t.equal(instance.qos, 1)
   t.equal(instance.retain, false)
-  t.equal(instance.messageId, 1)
+  t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
+  t.equal(instance.messageId, undefined)
   t.end()
 })
 
@@ -61,10 +63,12 @@ test('Packet copies over most data', function (t) {
     topic: 'hello',
     payload: 'world',
     qos: 2,
-    retain: true,
-    messageId: 1 // this is different
+    retain: true
   }
 
+  t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
+  t.equal(instance.messageId, undefined)
+  delete instance.messageId
   t.deepEqual(instance, expected)
   t.end()
 })
@@ -90,10 +94,12 @@ test('Packet fills in broker data', function (t) {
     topic: 'hello',
     payload: 'world',
     qos: 2,
-    retain: true,
-    messageId: 1 // this is different
+    retain: true
   }
 
+  t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
+  t.equal(instance.messageId, undefined)
+  delete instance.messageId
   t.deepEqual(instance, expected)
   t.end()
 })
