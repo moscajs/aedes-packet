@@ -11,7 +11,9 @@ function Packet (original, broker) {
   // [MQTT-2.3.1-5]
   if (this.qos > 0 || this.cmd !== 'publish') {
     //  [MQTT-2.3.1-1]
-    this.messageId = 1
+    // This is packet identifier uniquely identifies a message as it flows between
+    // client and broker. It is only relevant for QoS levels greater than 0
+    this.messageId = undefined
   }
 }
 
