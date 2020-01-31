@@ -1,5 +1,5 @@
 # aedes-packet
-[![Build Status](https://travis-ci.org/mcollina/aedes-packet.svg?branch=master)](https://travis-ci.org/mcollina/aedes-packet)
+![](https://github.com/moscajs/aedes-packet/workflows/ci/badge.svg)
 [![Dependencies Status](https://david-dm.org/mcollina/aedes-packet/status.svg)](https://david-dm.org/mcollina/aedes-packet)
 [![devDependencies Status](https://david-dm.org/mcollina/aedes-packet/dev-status.svg)](https://david-dm.org/mcollina/aedes-packet?type=dev)
 <br/>
