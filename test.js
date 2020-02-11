@@ -1,6 +1,6 @@
 'use strict'
 
-var test = require('tape')
+var { test } = require('tap')
 var Packet = require('./')
 
 test('Packet defaults - PUBLISH, QoS 0', function (t) {
