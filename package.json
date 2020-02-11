@@ -40,6 +40,9 @@
     "url": "https://github.com/moscajs/aedes-packet/issues"
   },
   "homepage": "https://github.com/moscajs/aedes-packet#readme",
+  "engines": {
+    "node": ">=10"
+  },
   "dependencies": {
     "mqtt-packet": "^6.3.0"
   },
