@@ -1,23 +1,25 @@
 {
   "name": "aedes-packet",
-  "version": "2.0.0",
+  "version": "2.2.0",
   "description": "Basic data structure for packets in Aedes ",
   "main": "packet.js",
-  "dependencies": {},
-  "devDependencies": {
-    "faucet": "0.0.1",
-    "nyc": "^14.1.1",
-    "pre-commit": "^1.2.2",
-    "standard": "^13.0.2",
-    "tape": "^4.11.0"
-  },
   "scripts": {
-    "test": "standard && tape test.js | faucet",
-    "coverage": "nyc --reporter=lcov tape test.js"
+    "lint": "npm run lint:standard && npm run lint:typescript && npm run lint:markdown",
+    "lint:standard": "standard --verbose | snazzy",
+    "lint:typescript": "standard --parser @typescript-eslint/parser --plugin @typescript-eslint/eslint-plugin test/types/*.ts packet.d.ts",
+    "lint:markdown": "markdownlint README.md",
+    "unit": "tap --no-esm -J test.js",
+    "typescript": "tsc --project ./test/types/tsconfig.json",
+    "test": "npm run lint && npm run unit && npm run typescript",
+    "test:ci": "npm run test",
+    "license-checker": "license-checker --production --onlyAllow='MIT;ISC;BSD-3-Clause;BSD-2-Clause'"
   },
+  "pre-commit": [
+    "test"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mcollina/aedes-packet.git"
+    "url": "git+https://github.com/moscajs/aedes-packet.git"
   },
   "keywords": [
     "mqtt",
@@ -26,9 +28,30 @@
     "aedes"
   ],
   "author": "Matteo Collina <hello@matteocollina.com>",
+  "contributors": [
+    {
+      "name": "Gnought",
+      "url": "https://github.com/gnought"
+    }
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mcollina/aedes-packet/issues"
+    "url": "https://github.com/moscajs/aedes-packet/issues"
   },
-  "homepage": "https://github.com/mcollina/aedes-packet#readme"
+  "homepage": "https://github.com/moscajs/aedes-packet#readme",
+  "dependencies": {
+    "mqtt-packet": "^6.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.26",
+    "@typescript-eslint/eslint-plugin": "^2.19.0",
+    "@typescript-eslint/parser": "^2.19.0",
+    "faucet": "0.0.1",
+    "license-checker": "^25.0.1",
+    "markdownlint-cli": "^0.22.0",
+    "pre-commit": "^1.2.2",
+    "snazzy": "^8.0.0",
+    "standard": "^14.3.1",
+    "tap": "^14.10.6"
+  }
 }
