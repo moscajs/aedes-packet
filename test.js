@@ -42,6 +42,19 @@ test('Packet defaults - PUBLISH, QoS 1', function (t) {
   t.end()
 })
 
+test('Packet defaults - PUBLISH, dup=true', function (t) {
+  var instance = new Packet({ dup: true })
+  t.equal(instance.cmd, 'publish')
+  t.equal(instance.brokerId, undefined)
+  t.equal(instance.brokerCounter, 0)
+  t.equal(instance.topic, undefined)
+  t.deepEqual(instance.payload, Buffer.alloc(0))
+  t.equal(instance.qos, 0)
+  t.equal(instance.retain, false)
+  t.equal(instance.messageId, undefined)
+  t.end()
+})
+
 test('Packet copies over most data', function (t) {
   var original = {
     cmd: 'pubrel',
