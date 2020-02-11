@@ -11,6 +11,7 @@ test('Packet defaults - PUBLISH, QoS 0', function (t) {
   t.equal(instance.topic, undefined)
   t.deepEqual(instance.payload, Buffer.alloc(0))
   t.equal(instance.qos, 0)
+  t.equal(instance.dup, false)
   t.equal(instance.retain, false)
   t.notOk(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
   t.end()
@@ -24,6 +25,7 @@ test('Packet defaults - PUBREL, QoS 0', function (t) {
   t.equal(instance.topic, undefined)
   t.deepEqual(instance.payload, Buffer.alloc(0))
   t.equal(instance.qos, 0)
+  t.equal(instance.dup, false)
   t.equal(instance.retain, false)
   t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
   t.equal(instance.messageId, undefined)
@@ -38,8 +40,23 @@ test('Packet defaults - PUBLISH, QoS 1', function (t) {
   t.equal(instance.topic, undefined)
   t.deepEqual(instance.payload, Buffer.alloc(0))
   t.equal(instance.qos, 1)
+  t.equal(instance.dup, false)
   t.equal(instance.retain, false)
   t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
+  t.equal(instance.messageId, undefined)
+  t.end()
+})
+
+test('Packet defaults - PUBLISH, dup=true', function (t) {
+  var instance = new Packet({ dup: true })
+  t.equal(instance.cmd, 'publish')
+  t.equal(instance.brokerId, undefined)
+  t.equal(instance.brokerCounter, 0)
+  t.equal(instance.topic, undefined)
+  t.deepEqual(instance.payload, Buffer.alloc(0))
+  t.equal(instance.qos, 0)
+  t.equal(instance.dup, true)
+  t.equal(instance.retain, false)
   t.equal(instance.messageId, undefined)
   t.end()
 })
@@ -52,6 +69,7 @@ test('Packet copies over most data', function (t) {
     topic: 'hello',
     payload: 'world',
     qos: 2,
+    dup: true,
     retain: true,
     messageId: 24
   }
@@ -63,6 +81,7 @@ test('Packet copies over most data', function (t) {
     topic: 'hello',
     payload: 'world',
     qos: 2,
+    dup: true,
     retain: true
   }
 
@@ -94,6 +113,7 @@ test('Packet fills in broker data', function (t) {
     topic: 'hello',
     payload: 'world',
     qos: 2,
+    dup: false,
     retain: true
   }
 
