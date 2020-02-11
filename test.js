@@ -82,8 +82,7 @@ test('Packet copies over most data', function (t) {
     payload: 'world',
     qos: 2,
     dup: true,
-    retain: true,
-    messageId: 1 // this is different
+    retain: true
   }
 
   t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
@@ -115,8 +114,7 @@ test('Packet fills in broker data', function (t) {
     payload: 'world',
     qos: 2,
     dup: false,
-    retain: true,
-    messageId: 1 // this is different
+    retain: true
   }
 
   t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
