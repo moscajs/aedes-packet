@@ -67,6 +67,7 @@ test('Packet copies over most data', function (t) {
     topic: 'hello',
     payload: 'world',
     qos: 2,
+    dup: true,
     retain: true,
     messageId: 24
   }
@@ -78,6 +79,7 @@ test('Packet copies over most data', function (t) {
     topic: 'hello',
     payload: 'world',
     qos: 2,
+    dup: true,
     retain: true,
     messageId: 1 // this is different
   }
@@ -107,6 +109,7 @@ test('Packet fills in broker data', function (t) {
     topic: 'hello',
     payload: 'world',
     qos: 2,
+    dup: false,
     retain: true,
     messageId: 1 // this is different
   }
