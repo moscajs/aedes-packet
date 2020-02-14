@@ -3,6 +3,7 @@
   "version": "2.3.0",
   "description": "Basic data structure for packets in Aedes ",
   "main": "packet.js",
+  "types": "packet.d.ts",
   "scripts": {
     "lint": "npm run lint:standard && npm run lint:typescript && npm run lint:markdown",
     "lint:standard": "standard --verbose | snazzy",
@@ -39,6 +40,9 @@
     "url": "https://github.com/moscajs/aedes-packet/issues"
   },
   "homepage": "https://github.com/moscajs/aedes-packet#readme",
+  "engines": {
+    "node": ">=8"
+  },
   "dependencies": {
     "mqtt-packet": "^6.3.0"
   },
