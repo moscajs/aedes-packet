@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/moscajs/aedes-packet#readme",
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "dependencies": {
     "mqtt-packet": "^6.3.0"
