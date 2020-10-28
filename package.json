@@ -54,7 +54,7 @@
     "license-checker": "^25.0.1",
     "markdownlint-cli": "^0.24.0",
     "pre-commit": "^1.2.2",
-    "snazzy": "^8.0.0",
+    "snazzy": "^9.0.0",
     "standard": "^15.0.0",
     "tap": "^14.10.6"
   }
