@@ -1,10 +1,10 @@
 'use strict'
 
-var { test } = require('tap')
-var Packet = require('./')
+const { test } = require('tap')
+const Packet = require('./')
 
 test('Packet defaults - PUBLISH, QoS 0', function (t) {
-  var instance = new Packet({})
+  const instance = new Packet({})
   t.equal(instance.cmd, 'publish')
   t.equal(instance.brokerId, undefined)
   t.equal(instance.brokerCounter, 0)
@@ -18,7 +18,7 @@ test('Packet defaults - PUBLISH, QoS 0', function (t) {
 })
 
 test('Packet defaults - PUBREL, QoS 0', function (t) {
-  var instance = new Packet({ cmd: 'pubrel' })
+  const instance = new Packet({ cmd: 'pubrel' })
   t.equal(instance.cmd, 'pubrel')
   t.equal(instance.brokerId, undefined)
   t.equal(instance.brokerCounter, 0)
@@ -33,7 +33,7 @@ test('Packet defaults - PUBREL, QoS 0', function (t) {
 })
 
 test('Packet defaults - PUBLISH, QoS 1', function (t) {
-  var instance = new Packet({ qos: 1 })
+  const instance = new Packet({ qos: 1 })
   t.equal(instance.cmd, 'publish')
   t.equal(instance.brokerId, undefined)
   t.equal(instance.brokerCounter, 0)
@@ -48,7 +48,7 @@ test('Packet defaults - PUBLISH, QoS 1', function (t) {
 })
 
 test('Packet defaults - PUBLISH, dup=true', function (t) {
-  var instance = new Packet({ dup: true })
+  const instance = new Packet({ dup: true })
   t.equal(instance.cmd, 'publish')
   t.equal(instance.brokerId, undefined)
   t.equal(instance.brokerCounter, 0)
@@ -62,7 +62,7 @@ test('Packet defaults - PUBLISH, dup=true', function (t) {
 })
 
 test('Packet copies over most data', function (t) {
-  var original = {
+  const original = {
     cmd: 'pubrel',
     brokerId: 'A56c',
     brokerCounter: 42,
@@ -73,8 +73,8 @@ test('Packet copies over most data', function (t) {
     retain: true,
     messageId: 24
   }
-  var instance = new Packet(original)
-  var expected = {
+  const instance = new Packet(original)
+  const expected = {
     cmd: 'pubrel',
     brokerId: 'A56c',
     brokerCounter: 42,
@@ -93,11 +93,11 @@ test('Packet copies over most data', function (t) {
 })
 
 test('Packet fills in broker data', function (t) {
-  var broker = {
+  const broker = {
     id: 'A56c',
     counter: 41
   }
-  var original = {
+  const original = {
     cmd: 'pubrel',
     topic: 'hello',
     payload: 'world',
@@ -105,8 +105,8 @@ test('Packet fills in broker data', function (t) {
     retain: true,
     messageId: 24
   }
-  var instance = new Packet(original, broker)
-  var expected = {
+  const instance = new Packet(original, broker)
+  const expected = {
     cmd: 'pubrel',
     brokerId: 'A56c',
     brokerCounter: 42,
