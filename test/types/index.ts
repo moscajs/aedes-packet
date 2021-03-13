@@ -3,7 +3,7 @@
 
 import { Packet } from '../../packet'
 
-var p = Packet()
+let p = Packet()
 p = Packet({
   cmd: 'publish',
   topic: 'hello',
