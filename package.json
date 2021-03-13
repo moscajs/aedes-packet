@@ -44,18 +44,18 @@
     "node": ">=10"
   },
   "dependencies": {
-    "mqtt-packet": "^6.3.0"
+    "mqtt-packet": "^6.9.0"
   },
   "devDependencies": {
-    "@types/node": "^14.0.1",
-    "@typescript-eslint/eslint-plugin": "^2.19.0",
-    "@typescript-eslint/parser": "^2.19.0",
+    "@types/node": "^14.14.34",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
     "faucet": "0.0.1",
     "license-checker": "^25.0.1",
-    "markdownlint-cli": "^0.27.0",
+    "markdownlint-cli": "^0.27.1",
     "pre-commit": "^1.2.2",
     "snazzy": "^9.0.0",
     "standard": "^16.0.3",
-    "tap": "^14.10.6"
+    "tap": "^14.11.0"
   }
 }
