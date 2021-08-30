@@ -13,6 +13,7 @@ test('Packet defaults - PUBLISH, QoS 0', function (t) {
   t.equal(instance.qos, 0)
   t.equal(instance.dup, false)
   t.equal(instance.retain, false)
+  t.equal(instance.ttlInSeconds, undefined)
   t.notOk(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
   t.end()
 })
@@ -29,6 +30,7 @@ test('Packet defaults - PUBREL, QoS 0', function (t) {
   t.equal(instance.retain, false)
   t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
   t.equal(instance.messageId, undefined)
+  t.equal(instance.ttlInSeconds, undefined)
   t.end()
 })
 
@@ -44,6 +46,7 @@ test('Packet defaults - PUBLISH, QoS 1', function (t) {
   t.equal(instance.retain, false)
   t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
   t.equal(instance.messageId, undefined)
+  t.equal(instance.ttlInSeconds, undefined)
   t.end()
 })
 
@@ -58,6 +61,7 @@ test('Packet defaults - PUBLISH, dup=true', function (t) {
   t.equal(instance.dup, true)
   t.equal(instance.retain, false)
   t.equal(instance.messageId, undefined)
+  t.equal(instance.ttlInSeconds, undefined)
   t.end()
 })
 
@@ -82,7 +86,43 @@ test('Packet copies over most data', function (t) {
     payload: 'world',
     qos: 2,
     dup: true,
-    retain: true
+    retain: true,
+    ttlInSeconds: undefined
+  }
+
+  t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
+  t.equal(instance.messageId, undefined)
+  delete instance.messageId
+  t.deepEqual(instance, expected)
+  t.end()
+})
+
+test('Packet understands properties.messageExpiryInterval', function (t) {
+  const original = {
+    cmd: 'publish',
+    brokerId: 'A56c',
+    brokerCounter: 42,
+    topic: 'hello',
+    payload: 'world',
+    qos: 2,
+    dup: true,
+    retain: true,
+    messageId: 24,
+    properties: {
+      messageExpiryInterval: 4
+    }
+  }
+  const instance = new Packet(original)
+  const expected = {
+    cmd: 'publish',
+    brokerId: 'A56c',
+    brokerCounter: 42,
+    topic: 'hello',
+    payload: 'world',
+    qos: 2,
+    dup: true,
+    retain: true,
+    ttlInSeconds: 4
   }
 
   t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
@@ -114,7 +154,8 @@ test('Packet fills in broker data', function (t) {
     payload: 'world',
     qos: 2,
     dup: false,
-    retain: true
+    retain: true,
+    ttlInSeconds: undefined
   }
 
   t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))

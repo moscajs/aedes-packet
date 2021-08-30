@@ -9,6 +9,7 @@ function Packet (original, broker) {
   this.qos = original.qos || 0
   this.retain = original.retain || false
   this.dup = original.dup || false
+  this.ttlInSeconds = original.properties?.messageExpiryInterval
   // [MQTT-2.3.1-5]
   if (this.qos > 0 || this.cmd !== 'publish') {
     //  [MQTT-2.3.1-1]

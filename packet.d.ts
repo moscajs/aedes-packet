@@ -11,6 +11,7 @@ declare namespace aedes {
   type AedesPacket = IPacket & {
     brokerId: string
     brokerCounter: number
+    ttlInSeconds?: number
   }
 
   function Packet(object?: AedesPacket) : aedes.AedesPacket
