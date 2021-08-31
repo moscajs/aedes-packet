@@ -1,9 +1,12 @@
 {
   "name": "aedes-packet",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "Basic data structure for packets in Aedes ",
   "main": "packet.js",
   "types": "packet.d.ts",
+  "publishConfig": {
+    "registry": "http://npm.internal:4873"
+  },
   "scripts": {
     "lint": "npm run lint:standard && npm run lint:typescript && npm run lint:markdown",
     "lint:standard": "standard --verbose | snazzy",
@@ -20,7 +23,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moscajs/aedes-packet.git"
+    "url": "git+https://github.com/bolteu/aedes-packet.git"
   },
   "keywords": [
     "mqtt",
@@ -39,7 +42,7 @@
   "bugs": {
     "url": "https://github.com/moscajs/aedes-packet/issues"
   },
-  "homepage": "https://github.com/moscajs/aedes-packet#readme",
+  "homepage": "https://github.com/bolteu/aedes-packet#readme",
   "engines": {
     "node": ">=10"
   },
