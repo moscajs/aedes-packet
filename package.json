@@ -52,7 +52,7 @@
     "@typescript-eslint/parser": "^4.17.0",
     "faucet": "0.0.1",
     "license-checker": "^25.0.1",
-    "markdownlint-cli": "^0.29.0",
+    "markdownlint-cli": "^0.31.0",
     "pre-commit": "^1.2.2",
     "snazzy": "^9.0.0",
     "standard": "^16.0.3",
