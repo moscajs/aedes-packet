@@ -1,6 +1,8 @@
 'use strict'
 
 function Packet (original, broker) {
+  this.clientId = original.clientId
+  this.nl = original.nl
   this.cmd = original.cmd || 'publish'
   this.brokerId = original.brokerId || (broker && broker.id)
   this.brokerCounter = original.brokerCounter || (broker ? (++broker.counter) : 0)
