@@ -127,7 +127,7 @@ test('Packet fills in broker data', function (t) {
 test('Packet copies clientId and nl if they exist', function (t) {
   const original = {
     clientId: 'client-id',
-    nl: false,
+    nl: false
   }
   const instance = new Packet(original)
   const expected = {
