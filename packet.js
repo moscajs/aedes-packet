@@ -1,8 +1,8 @@
 'use strict'
 
 function Packet (original, broker) {
-  if (original.hasOwnProperty('clientId')) this.clientId = original.clientId
-  if (original.hasOwnProperty('nl')) this.nl = original.nl
+  if (Object.prototype.hasOwnProperty.call(original, 'clientId')) this.clientId = original.clientId
+  if (Object.prototype.hasOwnProperty.call(original, 'nl')) this.nl = original.nl
 
   this.cmd = original.cmd || 'publish'
   this.brokerId = original.brokerId || (broker && broker.id)
