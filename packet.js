@@ -1,6 +1,9 @@
 'use strict'
 
 function Packet (original, broker) {
+  if (Object.prototype.hasOwnProperty.call(original, 'clientId')) this.clientId = original.clientId
+  if (Object.prototype.hasOwnProperty.call(original, 'nl')) this.nl = original.nl
+
   this.cmd = original.cmd || 'publish'
   this.brokerId = original.brokerId || (broker && broker.id)
   this.brokerCounter = original.brokerCounter || (broker ? (++broker.counter) : 0)
