@@ -64,7 +64,7 @@
     "mqtt-packet": "^7.0.0"
   },
   "devDependencies": {
-    "@types/node": "^17.0.0",
+    "@types/node": "^18.0.1",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
     "@typescript-eslint/parser": "^4.17.0",
     "faucet": "0.0.1",
