@@ -187,3 +187,15 @@ test('Packet does not add a properties key when absent', function (t) {
   t.notOk(Object.prototype.hasOwnProperty.call(instance, 'properties'))
   t.end()
 })
+
+test('Packet copies the internal messageExpiry timestamp if it exists', function (t) {
+  const instance = new Packet({ topic: 'hello', messageExpiry: 1234567890 })
+  t.equal(instance.messageExpiry, 1234567890)
+  t.end()
+})
+
+test('Packet does not add a messageExpiry key when absent', function (t) {
+  const instance = new Packet({ topic: 'hello' })
+  t.notOk(Object.prototype.hasOwnProperty.call(instance, 'messageExpiry'))
+  t.end()
+})
