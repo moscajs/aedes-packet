@@ -55,6 +55,6 @@
     "neostandard": "^0.13.0",
     "pre-commit": "^1.2.2",
     "release-it": "^19.0.4",
-    "typescript": "^5.0.2"
+    "typescript": "^6.0.3"
   }
 }
