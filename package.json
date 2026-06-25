@@ -5,9 +5,9 @@
   "main": "packet.js",
   "types": "packet.d.ts",
   "scripts": {
-    "lint": "npm run lint:standard && npm run lint:typescript && npm run lint:markdown",
-    "lint:standard": "standard --verbose | snazzy",
-    "lint:typescript": "standard --parser @typescript-eslint/parser --plugin @typescript-eslint/eslint-plugin test/types/*.ts packet.d.ts",
+    "lint": "npm run lint:code && npm run lint:markdown",
+    "lint:fix": "eslint --fix",
+    "lint:code": "eslint",
     "lint:markdown": "markdownlint README.md",
     "unit": "node --test test.js",
     "typescript": "tsc --project ./test/types/tsconfig.json",
@@ -48,16 +48,13 @@
     "mqtt-packet": "^9.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.12.4",
-    "@typescript-eslint/eslint-plugin": "^5.32.0",
-    "@typescript-eslint/parser": "^5.32.0",
+    "@types/node": "^26.0.1",
+    "eslint": "^9.39.4",
     "license-checker": "^25.0.1",
-    "markdownlint-cli": "^0.34.0",
+    "markdownlint-cli": "^0.49.0",
+    "neostandard": "^0.13.0",
     "pre-commit": "^1.2.2",
     "release-it": "^19.0.4",
-    "snazzy": "^9.0.0",
-    "standard": "^17.0.0",
-    
     "typescript": "^5.0.2"
   }
 }
