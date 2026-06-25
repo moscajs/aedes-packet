@@ -3,6 +3,14 @@
 function Packet (original, broker) {
   if (Object.prototype.hasOwnProperty.call(original, 'clientId')) this.clientId = original.clientId
   if (Object.prototype.hasOwnProperty.call(original, 'nl')) this.nl = original.nl
+  // MQTT v5 properties (user properties, content type, response topic,
+  // correlation data, payload format indicator, message expiry, etc.).
+  // Preserved so they survive packet wrapping during delivery/forwarding.
+  if (Object.prototype.hasOwnProperty.call(original, 'properties')) this.properties = original.properties
+  // Absolute expiry time (ms epoch) used by the broker to honour the MQTT v5
+  // Message Expiry Interval for queued messages. Internal: never serialized to
+  // the wire, but must survive packet wrapping while queued in persistence.
+  if (Object.prototype.hasOwnProperty.call(original, 'messageExpiry')) this.messageExpiry = original.messageExpiry
 
   this.cmd = original.cmd || 'publish'
   this.brokerId = original.brokerId || (broker && broker.id)

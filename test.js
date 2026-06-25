@@ -164,3 +164,38 @@ test('Packet does not copy clientId and nl if they dont exist', function (t) {
   t.same(instance, expected)
   t.end()
 })
+
+test('Packet copies MQTT v5 properties if they exist', function (t) {
+  const original = {
+    topic: 'hello',
+    payload: 'world',
+    properties: {
+      contentType: 'application/json',
+      responseTopic: 'reply/here',
+      correlationData: Buffer.from('id-1'),
+      userProperties: { foo: 'bar' },
+      payloadFormatIndicator: true
+    }
+  }
+  const instance = new Packet(original)
+  t.same(instance.properties, original.properties)
+  t.end()
+})
+
+test('Packet does not add a properties key when absent', function (t) {
+  const instance = new Packet({ topic: 'hello' })
+  t.notOk(Object.prototype.hasOwnProperty.call(instance, 'properties'))
+  t.end()
+})
+
+test('Packet copies the internal messageExpiry timestamp if it exists', function (t) {
+  const instance = new Packet({ topic: 'hello', messageExpiry: 1234567890 })
+  t.equal(instance.messageExpiry, 1234567890)
+  t.end()
+})
+
+test('Packet does not add a messageExpiry key when absent', function (t) {
+  const instance = new Packet({ topic: 'hello' })
+  t.notOk(Object.prototype.hasOwnProperty.call(instance, 'messageExpiry'))
+  t.end()
+})
