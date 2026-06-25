@@ -1,67 +1,64 @@
 'use strict'
 
-const { test } = require('tap')
+const { test } = require('node:test')
+const { strict: assert } = require('node:assert')
 const Packet = require('./')
 
-test('Packet defaults - PUBLISH, QoS 0', function (t) {
+test('Packet defaults - PUBLISH, QoS 0', function () {
   const instance = new Packet({})
-  t.equal(instance.cmd, 'publish')
-  t.equal(instance.brokerId, undefined)
-  t.equal(instance.brokerCounter, 0)
-  t.equal(instance.topic, undefined)
-  t.same(instance.payload, Buffer.alloc(0))
-  t.equal(instance.qos, 0)
-  t.equal(instance.dup, false)
-  t.equal(instance.retain, false)
-  t.notOk(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
-  t.end()
+  assert.strictEqual(instance.cmd, 'publish')
+  assert.strictEqual(instance.brokerId, undefined)
+  assert.strictEqual(instance.brokerCounter, 0)
+  assert.strictEqual(instance.topic, undefined)
+  assert.deepStrictEqual(instance.payload, Buffer.alloc(0))
+  assert.strictEqual(instance.qos, 0)
+  assert.strictEqual(instance.dup, false)
+  assert.strictEqual(instance.retain, false)
+  assert.strictEqual(Object.prototype.hasOwnProperty.call(instance, 'messageId'), false)
 })
 
-test('Packet defaults - PUBREL, QoS 0', function (t) {
+test('Packet defaults - PUBREL, QoS 0', function () {
   const instance = new Packet({ cmd: 'pubrel' })
-  t.equal(instance.cmd, 'pubrel')
-  t.equal(instance.brokerId, undefined)
-  t.equal(instance.brokerCounter, 0)
-  t.equal(instance.topic, undefined)
-  t.same(instance.payload, Buffer.alloc(0))
-  t.equal(instance.qos, 0)
-  t.equal(instance.dup, false)
-  t.equal(instance.retain, false)
-  t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
-  t.equal(instance.messageId, undefined)
-  t.end()
+  assert.strictEqual(instance.cmd, 'pubrel')
+  assert.strictEqual(instance.brokerId, undefined)
+  assert.strictEqual(instance.brokerCounter, 0)
+  assert.strictEqual(instance.topic, undefined)
+  assert.deepStrictEqual(instance.payload, Buffer.alloc(0))
+  assert.strictEqual(instance.qos, 0)
+  assert.strictEqual(instance.dup, false)
+  assert.strictEqual(instance.retain, false)
+  assert.strictEqual(Object.prototype.hasOwnProperty.call(instance, 'messageId'), true)
+  assert.strictEqual(instance.messageId, undefined)
 })
 
-test('Packet defaults - PUBLISH, QoS 1', function (t) {
+test('Packet defaults - PUBLISH, QoS 1', function () {
   const instance = new Packet({ qos: 1 })
-  t.equal(instance.cmd, 'publish')
-  t.equal(instance.brokerId, undefined)
-  t.equal(instance.brokerCounter, 0)
-  t.equal(instance.topic, undefined)
-  t.same(instance.payload, Buffer.alloc(0))
-  t.equal(instance.qos, 1)
-  t.equal(instance.dup, false)
-  t.equal(instance.retain, false)
-  t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
-  t.equal(instance.messageId, undefined)
-  t.end()
+  assert.strictEqual(instance.cmd, 'publish')
+  assert.strictEqual(instance.brokerId, undefined)
+  assert.strictEqual(instance.brokerCounter, 0)
+  assert.strictEqual(instance.topic, undefined)
+  assert.deepStrictEqual(instance.payload, Buffer.alloc(0))
+  assert.strictEqual(instance.qos, 1)
+  assert.strictEqual(instance.dup, false)
+  assert.strictEqual(instance.retain, false)
+  assert.strictEqual(Object.prototype.hasOwnProperty.call(instance, 'messageId'), true)
+  assert.strictEqual(instance.messageId, undefined)
 })
 
-test('Packet defaults - PUBLISH, dup=true', function (t) {
+test('Packet defaults - PUBLISH, dup=true', function () {
   const instance = new Packet({ dup: true })
-  t.equal(instance.cmd, 'publish')
-  t.equal(instance.brokerId, undefined)
-  t.equal(instance.brokerCounter, 0)
-  t.equal(instance.topic, undefined)
-  t.same(instance.payload, Buffer.alloc(0))
-  t.equal(instance.qos, 0)
-  t.equal(instance.dup, true)
-  t.equal(instance.retain, false)
-  t.equal(instance.messageId, undefined)
-  t.end()
+  assert.strictEqual(instance.cmd, 'publish')
+  assert.strictEqual(instance.brokerId, undefined)
+  assert.strictEqual(instance.brokerCounter, 0)
+  assert.strictEqual(instance.topic, undefined)
+  assert.deepStrictEqual(instance.payload, Buffer.alloc(0))
+  assert.strictEqual(instance.qos, 0)
+  assert.strictEqual(instance.dup, true)
+  assert.strictEqual(instance.retain, false)
+  assert.strictEqual(instance.messageId, undefined)
 })
 
-test('Packet copies over most data', function (t) {
+test('Packet copies over most data', function () {
   const original = {
     cmd: 'pubrel',
     brokerId: 'A56c',
@@ -85,14 +82,13 @@ test('Packet copies over most data', function (t) {
     retain: true
   }
 
-  t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
-  t.equal(instance.messageId, undefined)
+  assert.strictEqual(Object.prototype.hasOwnProperty.call(instance, 'messageId'), true)
+  assert.strictEqual(instance.messageId, undefined)
   delete instance.messageId
-  t.same(instance, expected)
-  t.end()
+  assert.deepStrictEqual(Object.assign({}, instance), expected)
 })
 
-test('Packet fills in broker data', function (t) {
+test('Packet fills in broker data', function () {
   const broker = {
     id: 'A56c',
     counter: 41
@@ -117,14 +113,13 @@ test('Packet fills in broker data', function (t) {
     retain: true
   }
 
-  t.ok(Object.prototype.hasOwnProperty.call(instance, 'messageId'))
-  t.equal(instance.messageId, undefined)
+  assert.strictEqual(Object.prototype.hasOwnProperty.call(instance, 'messageId'), true)
+  assert.strictEqual(instance.messageId, undefined)
   delete instance.messageId
-  t.same(instance, expected)
-  t.end()
+  assert.deepStrictEqual(Object.assign({}, instance), expected)
 })
 
-test('Packet copies clientId and nl if they exist', function (t) {
+test('Packet copies clientId and nl if they exist', function () {
   const original = {
     clientId: 'client-id',
     nl: false
@@ -143,11 +138,10 @@ test('Packet copies clientId and nl if they exist', function (t) {
     retain: false
   }
 
-  t.same(instance, expected)
-  t.end()
+  assert.deepStrictEqual(Object.assign({}, instance), expected)
 })
 
-test('Packet does not copy clientId and nl if they dont exist', function (t) {
+test('Packet does not copy clientId and nl if they dont exist', function () {
   const original = {}
   const instance = new Packet(original)
   const expected = {
@@ -161,11 +155,10 @@ test('Packet does not copy clientId and nl if they dont exist', function (t) {
     retain: false
   }
 
-  t.same(instance, expected)
-  t.end()
+  assert.deepStrictEqual(Object.assign({}, instance), expected)
 })
 
-test('Packet copies MQTT v5 properties if they exist', function (t) {
+test('Packet copies MQTT v5 properties if they exist', function () {
   const original = {
     topic: 'hello',
     payload: 'world',
@@ -178,24 +171,20 @@ test('Packet copies MQTT v5 properties if they exist', function (t) {
     }
   }
   const instance = new Packet(original)
-  t.same(instance.properties, original.properties)
-  t.end()
+  assert.deepStrictEqual(instance.properties, original.properties)
 })
 
-test('Packet does not add a properties key when absent', function (t) {
+test('Packet does not add a properties key when absent', function () {
   const instance = new Packet({ topic: 'hello' })
-  t.notOk(Object.prototype.hasOwnProperty.call(instance, 'properties'))
-  t.end()
+  assert.strictEqual(Object.prototype.hasOwnProperty.call(instance, 'properties'), false)
 })
 
-test('Packet copies the internal messageExpiry timestamp if it exists', function (t) {
+test('Packet copies the internal messageExpiry timestamp if it exists', function () {
   const instance = new Packet({ topic: 'hello', messageExpiry: 1234567890 })
-  t.equal(instance.messageExpiry, 1234567890)
-  t.end()
+  assert.strictEqual(instance.messageExpiry, 1234567890)
 })
 
-test('Packet does not add a messageExpiry key when absent', function (t) {
+test('Packet does not add a messageExpiry key when absent', function () {
   const instance = new Packet({ topic: 'hello' })
-  t.notOk(Object.prototype.hasOwnProperty.call(instance, 'messageExpiry'))
-  t.end()
+  assert.strictEqual(Object.prototype.hasOwnProperty.call(instance, 'messageExpiry'), false)
 })
